@@ -1,5 +1,5 @@
 # MicroAuth
-A micro-frontend(**mife**...like "wife":) bootstrap that authenticates mife users against Firebase and provides access to a configured mife [realm](https://github.com/Micro-cosm/micro-realm).
+A micro-frontend, or **mife**(like "wife"), bootstrap that authenticates mife users against Firebase and provides access to a configured mife [realm](https://github.com/Micro-cosm/micro-realm).
 
 To encourage rapid iteration/deployment, this project is configured to use [bin-zsh](https://github.com/wejafoo/bin-zsh).
 

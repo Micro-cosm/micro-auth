@@ -23,11 +23,7 @@ export class AppComponent  {
 	) {
 		this.env = environment;
 		console.log( 'Environment:', this.env );
-		if ( this.env.targetDomain === 'weja.us' ) {
-			this.title = 'WeJaFoo ID'
-		} else {
-			this.title = "Who 'dis?"
-		}
+		this.title = this.env.this.title
 		this.setTitle( this.title )
 	}
 	
