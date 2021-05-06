@@ -8,3 +8,26 @@
 		</mat-card-content>
 	</mat-card-content>
 </mat-card>
+
+<hr />
+
+<ng-container *ngIf="apiReply; else WAITING">
+	<h2>
+		JSON payload confirming valid server-side authentication
+	</h2>
+	<p>
+		Confirm <a href="{{env.server.auth.service}}" target="_blank">here</a> that
+		indeed the service is unavailable absent of a tokenized bearer auth header from this client.
+	</p>
+	<mat-card class="mat-card">
+		<mat-card-content class="mat-card-content" style="overflow-wrap: anywhere; ">
+			<pre style="overflow: auto"> {{ apiReply | json }} </pre>
+		</mat-card-content>
+	</mat-card>
+</ng-container>
+
+<ng-template #WAITING>
+	<h2>
+		Validating authentication with server-side authentication service...
+	</h2>
+</ng-template>
