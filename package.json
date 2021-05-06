@@ -15,10 +15,10 @@
     },
     "scripts": {
         "build": "ng build",
-        "start": "ng serve --port=4410",
+        "start": "ng serve --port=4021",
         "build:ngssc:prod": "ng run micro-auth:ngsscbuild:production",
         "build:ngssc:stage": "ng run micro-auth:ngsscbuild:stage",
-        "build:ngssc:wes": "ng run micro-auth:ngsscbuild:stage",
+        "build:ngssc:local": "ng run micro-auth:ngsscbuild:stage",
         "lint": "npx ng lint micro-auth",
         "lint:fix": "npx ng lint --fix micro-forms",
         "e2e": "ng e2e",

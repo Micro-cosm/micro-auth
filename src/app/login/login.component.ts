@@ -4,38 +4,32 @@ import { environment		} from '../../environments/environment';
 import { ActivatedRoute		} from '@angular/router';
 import { AngularFireAuth	} from '@angular/fire/auth';
 import { Component			} from '@angular/core';
-import { FormBuilder		} from '@angular/forms';
-import { OnDestroy			} from '@angular/core';
 import { OnInit				} from '@angular/core';
 import { Router				} from '@angular/router';
 import { AuthProvider		} from 'ngx-auth-firebaseui';
 import { Theme				} from 'ngx-auth-firebaseui';
-import { Subscription		} from 'rxjs';
-import { User				} from '../_models/user';
 
 @Component({
-	selector:		'app-login',
-	templateUrl:	'./login.component.html',
-	styleUrls:	[	'./login.component.sass' 	]
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.sass']
 })
 
 export class LoginComponent implements OnInit {
-	env:							any;
-	controls:						any;
-	email:							string;
-	error:							boolean;
-	index:							number;
-	login:							false;
-	password:						string;
-	text:							string;
-	title:							string;
-	userProfile:					User;
-	tosUrl:							string;
-	min:							number;
-	max:							number;
-	returnService:					string;
-	sendNewVerificationEmailText:	string;
-	verifyEmailGoBackText:			string;
+	env:		any;
+	controls:	any;
+	email:		string;
+	error:		boolean;
+	index:		number;
+	login:		false;
+	password:	string;
+	text:		string;
+	title:		string;
+	tosUrl:		string;
+	min:		number;
+	returnService: string;
+	verifyEmailGoBackText: string;
+	sendNewVerificationEmailText: string;
 	
 	themes					= Theme;
 	providers				= AuthProvider;
@@ -51,20 +45,19 @@ export class LoginComponent implements OnInit {
 	constructor (
 		private	route:		ActivatedRoute,
 		public	fireAuth:	AngularFireAuth,
-		public	router:		Router
-	) {
-		this.env = environment
-	}
+		public	router:		Router,
+	) { this.env = environment }
 	
 	ngOnInit () { this.returnService = this.route.snapshot.params.returnService }
 
 	onSuccess( event ) {
-		console.log( '>>LoginComponent -> onSuccess -> event:', event );
+		if ( this.env.debug ) console.log( '>>LoginComponent -> onSuccess -> event:', event );
+		
 		this.error	= false;
 		this.index	= 2;
 		if ( this.returnService === 'private' ) {
 			console.log( '>>>>>>>>>>>>>>>>>>>>>>>>> Returning:', this.returnService, '<<<<<<<<<<<<<<<<<<<<<<<<<' );
-			window.location.replace( this.env.private.service )
+			window.location.replace( this.env.private.service  )
 		} else {
 			window.location.replace( this.env.authGuardRemoteLoggedInURL )
 		}
@@ -72,11 +65,11 @@ export class LoginComponent implements OnInit {
 	
 	onError( event ) {
 		console.error( 'onError event --> ', event );
-		console.log( '>>LoginComponent -> onError -> event:', event );
+		if ( this.env.debug ) console.log( '>>LoginComponent -> onError -> event:', event );
 		this.error = true;
 	}
 	
-	logout():		void { this.fireAuth.signOut().then( r => console.log( '>> LoginComponent -> signOut:', r ))}
-	onSignOut():	void { console.log( 'Sign-out successful!' )}
+	logout(): void { this.fireAuth.signOut().then( r => console.log( '>> LoginComponent -> signOut:', r ))}
+	onSignOut(): void { console.log( 'Sign-out successful!' )}
 }
 

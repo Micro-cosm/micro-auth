@@ -1,18 +1,18 @@
 version: '3.7'
 
 services:
-    micro-auth:
-        image: us.gcr.io/${TARGET_PROJECT_ID}/${SERVICE_NAME}/${TARGET_ALIAS}:${TARGET_IMAGE_TAG}
-        build:
-            context: .
-            args:
-                - TARGET_ALIAS
-                - TARGET_IMAGE_TAG
-                - SERVICE_NAME
-                - TARGET_PROJECT_ID
-        container_name: micro_auth_${TARGET_ALIAS}
-        restart: unless-stopped
-        env_file:
-            - ".env.local.yml"
-        ports:
-            - "4410:8080"
+  auth:
+    image: ${IMAGE_URL}
+    build:
+      context: .
+      args:
+        - TARGET_ALIAS
+        - TARGET_IMAGE_TAG
+        - SERVICE
+        - TARGET_PROJECT_ID
+    container_name: ${CONTAINER}
+    restart: unless-stopped
+    env_file:
+      - ".env.local.yml"
+    ports:
+      - ${TARGET_LOCAL_PORT}:${TARGET_REMOTE_PORT}
